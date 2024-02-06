@@ -1,0 +1,29 @@
+name: "Dense tranformer (DTx) configuration"
+DATA:
+  resize_shortedge: 320
+  Do_augmentation: True
+  AUGMENTATION:
+    probability    : 0.33
+    flip_horizontal: 1
+    translate      : 0.1
+    rotate         : 10
+    scale          : 0.1
+    shear          : 0.1
+    hsv            : (8,8,5)
+
+TRAIN:
+  train_batch: 6
+  val_batch  : 6
+  test_batch : 8
+  LEARNING_SCHEDULER:
+    fix_step: True
+    factor: 0.5
+
+MODEL:
+  dense_inference: True
+  feature_selection: [2,3]
+
+OUTPUT_LOG:
+  exp_tag : "DTx"
+  attept  : "_00"
+

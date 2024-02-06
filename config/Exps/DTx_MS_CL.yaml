@@ -1,0 +1,35 @@
+name: "Dense tranformer (DTx) & MultiScale (Res2Net) & Contrastive loss"
+DATA:
+  resize_shortedge: 320
+  Do_augmentation: True
+  AUGMENTATION:
+    probability    : 0.33
+    flip_horizontal: 1
+    translate      : 0.1
+    rotate         : 10
+    scale          : 0.1
+    shear          : 0.1
+    hsv            : (8,8,5)
+
+TRAIN:
+  train_batch: 4
+  val_batch  : 4
+  test_batch : 8
+  LEARNING_SCHEDULER:
+    fix_step: True
+    factor: 0.5
+  
+  loss_tags: ["labels", "boxes", "contrastive"] #, "cardinality"]
+  loss_components: ['loss_ce', 'loss_bbox', 'loss_giou',"loss_cl"]
+  loss_weights: [1,5,2,1]
+     
+MODEL:
+  dense_inference: True
+  feature_selection : [2,3]
+  add_multi_scale_backbone: True
+  MS_config: "res2net50_26w_4s"
+  
+OUTPUT_LOG:
+  exp_tag : "DTxMsCL"
+  attept  : "_00"
+

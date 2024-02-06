@@ -1,0 +1,25 @@
+name: "Original DETR implementation"
+DATA:
+  resize_shortedge: 320 
+  Do_augmentation: True
+  AUGMENTATION:
+    probability    : 0.33
+    flip_horizontal: 1
+    translate      : 0.1
+    rotate         : 10
+    scale          : 0.1
+    shear          : 0.1
+    hsv            : (8,8,5)
+
+TRAIN:
+  train_batch: 8
+  val_batch  : 8
+  test_batch : 8
+  LEARNING_SCHEDULER:
+    fix_step: True
+    factor: 0.5
+
+OUTPUT_LOG:
+  exp_tag : "DETR"
+  attept  : "_00"
+
